@@ -14,5 +14,5 @@ lng = geo_code.get_lng()
 address = geo_code.get_address()
 
 Note:
-  Code need to be tested docuk=mented properly.
+  Code need to be tested documented properly.
   

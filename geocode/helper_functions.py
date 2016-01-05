@@ -44,4 +44,3 @@ def encode_url(base_url, url_parameter_names, address='', lat='', lng='', key=''
     encode_url_parameters = urllib.urlencode(url_parameters) + "&" + urllib.urlencode(kwargs)
 
     return base_url + encode_url_parameters.rstrip("&")
-

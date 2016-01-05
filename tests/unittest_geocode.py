@@ -1,5 +1,3 @@
-__author__ = 'Saleem Latif'
-
 from testscenarios import TestWithScenarios
 import unittest
 from geocode.geocode import GeoCode

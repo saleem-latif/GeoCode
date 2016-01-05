@@ -1,5 +1,3 @@
-__author__ = 'Saleem Latif'
-
 import urllib2
 from xml.etree import ElementTree
 
@@ -8,7 +6,7 @@ from geocode_exceptions import APIError
 from helper_functions import encode_url
 
 
-class GeoCode():
+class GeoCode(object):
     address = ''
     lat = ''
     lng = ''
@@ -136,4 +134,3 @@ class GeoCode():
         else:
             self.update()
             return dict(lat=self.lat, lng=self.lng)
-

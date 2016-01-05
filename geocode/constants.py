@@ -21,4 +21,3 @@ google_geocode_response_tags = dict(status='status',
 STATUS_OK = "Status OK"
 STATUS_ERROR = "Status Error"
 STATUS_UNKNOWN = "Status Unknown"
-

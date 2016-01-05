@@ -36,7 +36,14 @@ class GeoCode(object):
         self.update()
 
     def __str__(self):
-        return "Address : " + self.address + "\n(lat, lng): (" + self.lat + ", " + self.lng + ")."
+        return "Address : {address}\n(lat, lng): ({lat}, {lng}).".format(
+            address=self.address, lat=self.lat, lng=self.lng
+        )
+
+    def __unicode__(self):
+        return u"Address : {address}\n(lat, lng): ({lat}, {lng}).".format(
+            address=self.address, lat=self.lat, lng=self.lng
+        )
 
     def update(self, address='', lat='', lng='', extra_url_parameters=None):
         if (not (address or (lat and lng))) and (not (self.address or (self.lat and self.lng))):

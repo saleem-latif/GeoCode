@@ -7,7 +7,7 @@ def encode_url(base_url, url_parameter_names, address='', lat='', lng='', key=''
                client='', signature='', **kwargs):
 
     url_parameters = {url_parameter_names['address']: address,
-                      url_parameter_names['latlng']: lat + "," + lng,
+                      url_parameter_names['latlng']: "{lat}, {lng}".format(lat=lat, lng=lng),
                       url_parameter_names['key']: key,
                       url_parameter_names['client']: client,
                       url_parameter_names['signature']: signature,

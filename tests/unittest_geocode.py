@@ -5,14 +5,24 @@ from geocode.geocode import GeoCode
 
 class GeoCodeTests(TestWithScenarios, unittest.TestCase):
 
-    scenarios = [("Scenario - 1: Get latlng from address",
-                  {'address': "Sydney NSW",
-                   'latlng': (-33, 151),
-                   'method': "geocode"
-                   }
-                  ),
-
-                 ]
+    scenarios = [
+        (
+            "Scenario - 1: Get latlng from address",
+            {
+                'address': "Sydney NSW",
+                'latlng': (-33.8674869, 151.2069902),
+                'method': "geocode",
+            }
+        ),
+        (
+            "Scenario - 2: Get address from latlng",
+            {
+                'address': "Sydney NSW",
+                'latlng': (-33.8674869, 151.2069902),
+                'method': "address",
+            }
+        ),
+    ]
 
     def setUp(self):
         pass
@@ -35,12 +45,9 @@ class GeoCodeTests(TestWithScenarios, unittest.TestCase):
         lng = int(float(geo_code.get_lng()))
         address = geo_code.get_address()
 
-        assert (lat, lng) == (expected_lat, expected_lng), "(" + str(lat) + ", " + str(lng) + \
-                                                           ") returned by GeoCode is not same as" + "(" + \
-                                                           str(expected_lat) + ", " + str(expected_lng) + ")"
-
-        assert expected_address in address, "Address: " + str(address) + "\nas returned by GeoCode is not same as " + \
-                                            expected_address
+        self.assertAlmostEqual(lat, expected_lat, delta=5)
+        self.assertAlmostEqual(lng, expected_lng, delta=5)
+        self.assertIn(expected_address, address)
 
     def tearDown(self):
         pass

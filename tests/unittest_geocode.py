@@ -41,9 +41,9 @@ class GeoCodeTests(TestWithScenarios, unittest.TestCase):
 
             geo_code = GeoCode(lat=expected_lat, lng=expected_lng)
 
-        lat = int(float(geo_code.get_lat()))
-        lng = int(float(geo_code.get_lng()))
-        address = geo_code.get_address()
+        lat = int(float(geo_code.lat))
+        lng = int(float(geo_code.lng))
+        address = geo_code.address
 
         self.assertAlmostEqual(lat, expected_lat, delta=5)
         self.assertAlmostEqual(lng, expected_lng, delta=5)

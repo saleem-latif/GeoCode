@@ -3,16 +3,20 @@ GeoCode
 
 Python wrapper for google's geoode REST API
 
-GeoCode allows you to retrieve latitude longitude for an address or vice cersa.
+GeoCode allows you to retrieve latitude longitude for an address or vice versa.
 
-Example:
+__Example Usage:__
 
-geo_code = GeoCode(address="Sydney, NSW")
+`geo_code = GeoCode(address="Sydney, NSW")`
 
-lat = geo_code.get_lat()
-lng = geo_code.get_lng()
-address = geo_code.get_address()
+__Accessing latitude/longitude or Address:__
+
+`lat = geo_code.lat`
+
+`lng = geo_code.lng`
+
+`address = geo_code.address`
 
 Note:
-  Code need to be tested documented properly.
+  Code need to be tested and documented properly.
   

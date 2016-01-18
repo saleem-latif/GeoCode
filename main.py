@@ -1,5 +1,6 @@
-from geocode.geocode import GeoCode
+from geocode.geocode import GeoCodeAccessAPI
 
 if __name__ == "__main__":
-    geo_code = GeoCode(address="Sydney, NSW")
-    print geo_code
+    api = GeoCodeAccessAPI()
+    geocode = api.get_geocode("Sydney, NSW")
+    print geocode

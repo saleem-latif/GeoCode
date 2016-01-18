@@ -1,6 +1,6 @@
 from testscenarios import TestWithScenarios
 import unittest
-from geocode.geocode import GeoCode
+from geocode.geocode import GeoCodeAccessAPI
 
 
 class GeoCodeTests(TestWithScenarios, unittest.TestCase):
@@ -25,7 +25,7 @@ class GeoCodeTests(TestWithScenarios, unittest.TestCase):
     ]
 
     def setUp(self):
-        pass
+        self.api = GeoCodeAccessAPI()
 
     def test_geocode(self):
         if self.method == 'geocode':
@@ -33,21 +33,19 @@ class GeoCodeTests(TestWithScenarios, unittest.TestCase):
             expected_lat = self.latlng[0]
             expected_lng = self.latlng[1]
 
-            geo_code = GeoCode(address=expected_address)
+            geocode = self.api.get_geocode(expected_address)
+
+            self.assertAlmostEqual(geocode.lat, expected_lat, delta=5)
+            self.assertAlmostEqual(geocode.lng, expected_lng, delta=5)
+            self.assertIn(expected_address, geocode.address)
+
         else:
             expected_address = self.address
             expected_lat = self.latlng[0]
             expected_lng = self.latlng[1]
 
-            geo_code = GeoCode(lat=expected_lat, lng=expected_lng)
-
-        lat = int(float(geo_code.lat))
-        lng = int(float(geo_code.lng))
-        address = geo_code.address
-
-        self.assertAlmostEqual(lat, expected_lat, delta=5)
-        self.assertAlmostEqual(lng, expected_lng, delta=5)
-        self.assertIn(expected_address, address)
+            address = self.api.get_address(lat=expected_lat, lng=expected_lng)
+            self.assertIn(expected_address, address)
 
     def tearDown(self):
         pass

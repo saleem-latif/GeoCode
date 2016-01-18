@@ -7,7 +7,7 @@ GeoCode allows you to retrieve latitude longitude for an address or vice versa.
 
 __Example Usage:__
 
-`geo_code = GeoCode(address="Sydney, NSW")`
+`geo_code = GeoCodeAccessAPI(address="Sydney, NSW")`
 
 __Accessing latitude/longitude or Address:__
 

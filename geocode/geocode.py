@@ -2,8 +2,8 @@ import urllib2
 from xml.etree import ElementTree
 
 from constants import geo_code_url, parameter_names_map, STATUS_OK, STATUS_UNKNOWN, google_geocode_response_tags
-from geocode_exceptions import APIError
-from helper_functions import encode_geocode_url
+from exceptions import APIError
+from helpers import encode_geocode_url
 
 
 class GeoCode(object):

@@ -67,8 +67,8 @@ class GeoCodeAccessAPI(object):
         :param client: Client key for accessing google services.
         :param signature: client signature for accessing google services.
         """
-        # if not key or (client and signature):
-        #     raise ValueError("A 'key' or 'client', 'signature' pair must be provided to access GeoApi.")
+        if not key or (client and signature):
+            raise ValueError("A 'key' or 'client', 'signature' pair must be provided to access GeoApi.")
 
         if key:
             self._authentication_parameters.update({
@@ -113,24 +113,6 @@ class GeoCodeAccessAPI(object):
         )
         return geocode
 
-
-    # def __init__(self, address='', lat='', lng='', key='', client='', signature='',  extra_url_parameters=''):
-    #
-    #     if not (address or (lat and lng)):
-    #         raise ValueError("An Address or latitude, longitude pair must be provided.")
-    #
-    #     self._address = address
-    #     self._lat = lat
-    #     self._lng = lng
-    #     self._key = key
-    #     self._client = client
-    #     self._signature = signature
-    #
-    #     if extra_url_parameters:
-    #         self._extra_url_parameters = extra_url_parameters
-    #
-    #     self.update()
-
     def __str__(self):
         return "Address : {address}\n(lat, lng): ({lat}, {lng}).".format(
             address=self.address, lat=self.lat, lng=self.lng
@@ -152,39 +134,6 @@ class GeoCodeAccessAPI(object):
     @property
     def lng(self):
         return self._lng
-
-    # def update(self, address='', lat='', lng='', extra_url_parameters=None):
-    #     if (not (address or (lat and lng))) and (not (self.address or (self.lat and self.lng))):
-    #         raise ValueError("No address or (lat, lng) given!")
-    #
-    #     if extra_url_parameters and type(extra_url_parameters) is not dict:
-    #         raise TypeError("Argument extra_url_parameters of type (%s) is not a dict" % type(extra_url_parameters))
-    #
-    #     if address:
-    #         self._address = address
-    #     if lat:
-    #         self._lat = lat
-    #     if lng:
-    #         self._lng = lng
-    #     if extra_url_parameters:
-    #         self._extra_url_parameters = extra_url_parameters
-    #
-    #     self._url = encode_geocode_url(
-    #         base_url=geo_code_url,
-    #         parameter_names_map=parameter_names_map,
-    #         address=self.address,
-    #         lat=self.lat,
-    #         lng=self.lng,
-    #         key=self._key,
-    #         client=self._client,
-    #         signature=self._signature,
-    #         **self._extra_url_parameters
-    #     )
-    #
-    #     tree = self._get_xml_response_tree()
-    #     self._address = tree.find(google_geocode_response_tags['address']).text
-    #     self._lat = tree.find(google_geocode_response_tags['lat']).text
-    #     self._lng = tree.find(google_geocode_response_tags['lng']).text
 
     def _get_xml_response_tree(self):
         reply = urllib2.urlopen(self._url)
